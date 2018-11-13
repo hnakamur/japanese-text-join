@@ -24,6 +24,8 @@ class JapaneseTextJoin(docutils.transforms.Transform):
                         prev_category = unicodedata.category(line[-1])
                     else:
                         lines.append(line)
+                    for c in "\n\r\t":  
+                        line = line.replace(c, "")  
                 joined_text = '\n'.join(lines)
                 text.parent.replace(text, docutils.nodes.Text(joined_text, text.rawsource))
 
